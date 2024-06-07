@@ -1,16 +1,23 @@
-export default function Post () {
+import {formatISO9075} from "date-fns";
+import { Link } from "react-router-dom";
+
+export default function Post ({_id,title, content, summary, cover, createdAt, author}) {
     return (
         <div className="post">
             <div className="image">
-                <img src="https://scontent.fdad1-1.fna.fbcdn.net/v/t39.30808-6/447852585_452245730835494_5654339456513346602_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_ohc=i0yoVuAEQT4Q7kNvgGU4BBU&_nc_ht=scontent.fdad1-1.fna&oh=00_AYA3q67UU55X28kES8i7ZsKj5QCBZefkMRpmzlhAtJjKwA&oe=6665DB54"/>
+                <Link to={`/post/${_id}`}>
+                    <img src={'http://localhost:4000/' + cover}/>
+                </Link>
             </div>
             <div className="texts">
-                <h2>THẦN CHÚ FIX BUG CHO MẤY BẠN CODE PYTHON</h2>
+                <Link to={`/post/${_id}`}>
+                    <h2>{title}</h2>
+                </Link>
                 <p className="info">
-                    <a className="author">Minh Tri</a>
-                    <time>2024-04-05 12:15</time>
+                    <a className="author">{author.username}</a>
+                    <time>{formatISO9075(new Date(createdAt))}</time>
                 </p>
-                <p className="summary">Anh em lập trình sử dụng SQL Server rất nhiều người đang không biết điều này - kinh nghiệm phỏng vấn và làm dự án của tôi</p>
+                <p className="summary">{summary}</p>
             </div>
       </div> 
     );
