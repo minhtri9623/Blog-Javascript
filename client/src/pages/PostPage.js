@@ -1,6 +1,7 @@
+
 import { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { formatISO9075} from "date-fns";
+import moment from "moment";
 import { UserContext } from "../UserContext";
 
 export default function PostPage() {
@@ -18,10 +19,25 @@ export default function PostPage() {
     
     if(!postInfo) return '';
     
+
+    async function deletePost(ev) {
+        ev.preventDefault();
+        const response = await fetch(`http://localhost:4000/post/${id}`, {
+                method: 'DELETE',
+                headers: {'Content-Type':'application/json'},
+            });
+            if(response.status === 200) {
+                window.location.replace("/");
+            } else {
+                let message = "delete failed";
+                alert(message);
+            }
+    }
+
     return (
         <div className="post-page">
              <h1>{postInfo.title}</h1>
-             <time>{formatISO9075(new Date(postInfo.createdAt))}</time>
+             <time>{moment(postInfo.createdAt).format('HH:mm DD-MM-YYYY')}</time>
              <div className="author">by @{postInfo.author.username}</div>
              {userInfo.id === postInfo.author._id && (
                 <div className="edit-row">
@@ -31,6 +47,9 @@ export default function PostPage() {
                     </svg>
                         Edit this post
                     </Link>
+                    <div className="delete-btn" onClick={deletePost}>
+                        Delete
+                    </div>
                 </div>
              )}
             <div className="image">

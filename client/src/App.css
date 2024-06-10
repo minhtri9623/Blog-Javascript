@@ -3,7 +3,7 @@
 }
 
 body {
-  color: #222;
+  color: #333;
 }
 
 img {
@@ -121,7 +121,7 @@ form.register h1 {
 }
 
 div.post-page div.image {
-  max-height: 200px;
+  max-height: 100%;
   display: flex;
   overflow: hidden;
 }
@@ -154,6 +154,10 @@ div.post-page .author {
 div.edit-row {
   text-align: center;
   margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 }
 
 div.post-page a.edit-btn {
@@ -163,11 +167,28 @@ div.post-page a.edit-btn {
   gap: 5px;
   color: #fff;
   border-radius: 5px;
-  padding: 15px 30px;
+  padding: 10px 20px;
   text-decoration: none;
   box-sizing: border-box;
 }
 
 a svg {
   height: 20px;
+}
+
+div.post-page div.delete-btn {
+  background-color: #333;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: #fff;
+  border-radius: 5px;
+  padding: 10px 20px;
+  text-decoration: none;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.logout {
+  cursor: pointer;
 }

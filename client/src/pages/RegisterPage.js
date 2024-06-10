@@ -13,9 +13,14 @@ export default function RegisterPage () {
             if(response.status === 200) {
                 alert('registration successful');
             } else {
-                alert('registration failed');
+                let message = "registration failed";
+                if (response.code === 11000 ) {
+                    message = "username already exists";
+                }
+                alert(message);
             }
     }
+    
 
     return (
         <form className="register" onSubmit={register}>
