@@ -1,4 +1,4 @@
-import {formatISO9075} from "date-fns";
+import moment from "moment";
 import { Link } from "react-router-dom";
 
 export default function Post ({_id,title, content, summary, cover, createdAt, author}) {
@@ -15,7 +15,7 @@ export default function Post ({_id,title, content, summary, cover, createdAt, au
                 </Link>
                 <p className="info">
                     <a className="author">{author.username}</a>
-                    <time>{formatISO9075(new Date(createdAt))}</time>
+                    <time>{moment(createdAt).format('HH:mm DD-MM-YYYY')}</time>
                 </p>
                 <p className="summary">{summary}</p>
             </div>

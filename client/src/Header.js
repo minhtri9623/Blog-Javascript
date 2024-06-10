@@ -8,9 +8,11 @@ export default function Header() {
         fetch('http://localhost:4000/profile', {
             credentials:'include',
         }).then(response => {
-            response.json().then(userInfo => {
-                setUserInfo(userInfo);
-            });
+            if(response.status == 200) {
+                response.json().then(userInfo => {
+                    setUserInfo(userInfo);
+                });
+            } 
         });
     }, []);
 
@@ -32,7 +34,7 @@ export default function Header() {
                 {username && (
                     <>
                         <Link to="/create">Create new post</Link>
-                        <a onClick={logout}>Logout ({username})</a>
+                        <a className="logout" onClick={logout}>Logout ({username})</a>
                     </>
                 )}
                 {!username && (
